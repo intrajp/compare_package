@@ -2,6 +2,7 @@ compare
 
 # Requirements
 
+```
  You need these packages.
 
  autoconf
@@ -24,3 +25,4 @@ Program Name: compare
 
 # cleaning
  $ make clean-local
+```
