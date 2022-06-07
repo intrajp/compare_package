@@ -1,4 +1,4 @@
-compare
+compare_package
 
 # Requirements
 
@@ -15,11 +15,11 @@ compare
  $ ./configure
  $ make
 
-Program Name: compare
+Program Name: compare_package
 
   Compare 2 package versions.
   (Ex)
-  ./compare 2.2.10-1 2.2.10-2
+  ./compare_package 2.2.10-1 2.2.10-2
 
 # There is no install script please use in the current directory. 
 
