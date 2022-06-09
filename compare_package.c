@@ -37,17 +37,9 @@ static void __print_help(void)
     puts("   Ex. ./compare_package 2.6-1.5 2.6-2.1\n");
 }
 
-/* This static function sets delimitered strings into an given array. */
-static void __set_token_to_arr(char* str_c, char arr[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH], const char delim[2])
+/* This static set el related strings to a number. */
+static char* __set_el_related_strings_to_number(char* token)
 {
-    char comp_c[MAX_FILE_NAME_LENGTH]= "";
-    strncpy(comp_c, str_c,
-         MAX_FILE_NAME_LENGTH - 1);
-    char* token = ""; /* compare string would be set into this variable in while loop */
-    int i = 0;
-
-    /* get the first token */
-    token = strtok(comp_c, delim);
     if (
             (strcmp(token, "x86_64") == 0) ||
             (strcmp(token, "noarch") == 0) ||
@@ -133,6 +125,22 @@ static void __set_token_to_arr(char* str_c, char arr[MAX_ARR_LENGTH][MAX_FILE_NA
         token = "8";
     if (strcmp(token, "el8_9") == 0)
         token = "9";
+
+    return token;
+}
+
+/* This static function sets delimitered strings into an given array. */
+static void __set_token_to_arr(char* str_c, char arr[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH], const char delim[2])
+{
+    char comp_c[MAX_FILE_NAME_LENGTH]= "";
+    strncpy(comp_c, str_c,
+         MAX_FILE_NAME_LENGTH - 1);
+    char* token = ""; /* compare string would be set into this variable in while loop */
+    int i = 0;
+
+    /* get the first token */
+    token = strtok(comp_c, delim);
+    token = __set_el_related_strings_to_number(token);
     //printf("first_token:%s\n", token);
     strncpy(arr[i], token,
         MAX_FILE_NAME_LENGTH - 1);
@@ -143,91 +151,7 @@ static void __set_token_to_arr(char* str_c, char arr[MAX_ARR_LENGTH][MAX_FILE_NA
         token = strtok(NULL, delim);
         if (token == NULL)
             break;
-        if (
-                (strcmp(token, "x86_64") == 0) ||
-                (strcmp(token, "noarch") == 0) ||
-                (strcmp(token, "module") == 0))
-            token = "";
-        if (strcmp(token, "el5") == 0)
-            token = "0";
-        if (strcmp(token, "el5_1") == 0)
-            token = "1";
-        if (strcmp(token, "el5_2") == 0)
-            token = "2";
-        if (strcmp(token, "el5_3") == 0)
-            token = "3";
-        if (strcmp(token, "el5_4") == 0)
-            token = "4";
-        if (strcmp(token, "el5_5") == 0)
-            token = "5";
-        if (strcmp(token, "el5_6") == 0)
-            token = "6";
-        if (strcmp(token, "el5_7") == 0)
-            token = "7";
-        if (strcmp(token, "el5_8") == 0)
-            token = "8";
-        if (strcmp(token, "el5_9") == 0)
-            token = "9";
-        if (strcmp(token, "el6") == 0)
-            token = "0";
-        if (strcmp(token, "el6_1") == 0)
-            token = "1";
-        if (strcmp(token, "el6_2") == 0)
-            token = "2";
-        if (strcmp(token, "el6_3") == 0)
-            token = "3";
-        if (strcmp(token, "el6_4") == 0)
-            token = "4";
-        if (strcmp(token, "el6_5") == 0)
-            token = "5";
-        if (strcmp(token, "el6_6") == 0)
-            token = "6";
-        if (strcmp(token, "el6_7") == 0)
-            token = "7";
-        if (strcmp(token, "el6_8") == 0)
-            token = "8";
-        if (strcmp(token, "el6_9") == 0)
-            token = "9";
-        if (strcmp(token, "el7") == 0)
-            token = "0";
-        if (strcmp(token, "el7_1") == 0)
-            token = "1";
-        if (strcmp(token, "el7_2") == 0)
-            token = "2";
-        if (strcmp(token, "el7_3") == 0)
-            token = "3";
-        if (strcmp(token, "el7_4") == 0)
-            token = "4";
-        if (strcmp(token, "el7_5") == 0)
-            token = "5";
-        if (strcmp(token, "el7_6") == 0)
-            token = "6";
-        if (strcmp(token, "el7_7") == 0)
-            token = "7";
-        if (strcmp(token, "el7_8") == 0)
-            token = "8";
-        if (strcmp(token, "el7_9") == 0)
-            token = "9";
-        if (strcmp(token, "el8") == 0)
-            token = "0";
-        if (strcmp(token, "el8_1") == 0)
-            token = "1";
-        if (strcmp(token, "el8_2") == 0)
-            token = "2";
-        if (strcmp(token, "el8_3") == 0)
-            token = "3";
-        if (strcmp(token, "el8_4") == 0)
-            token = "4";
-        if (strcmp(token, "el8_5") == 0)
-            token = "5";
-        if (strcmp(token, "el8_6") == 0)
-            token = "6";
-        if (strcmp(token, "el8_7") == 0)
-            token = "7";
-        if (strcmp(token, "el8_8") == 0)
-            token = "8";
-        if (strcmp(token, "el8_9") == 0)
-            token = "9";
+        token = __set_el_related_strings_to_number(token);
         strncpy(arr[i], token,
             MAX_FILE_NAME_LENGTH - 1);
         //printf("%s\n", token);
@@ -239,9 +163,6 @@ static void __set_token_to_arr(char* str_c, char arr[MAX_ARR_LENGTH][MAX_FILE_NA
 static int __compare_package_strings(char arr_a[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH], char arr_b[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH])
 {
     //Refer:https://www.enseignement.polytechnique.fr/informatique/INF478/docs/Cpp/en/c/string/byte/strtol.html
-    //cups-2.2.6-40.el8.x86_64
-    //_csv:2.2.6-33.el8
-    //_txt:2.2.6-40.el8.x86_64
     int i = 0;
     // Base 36 
     int base = 36;
