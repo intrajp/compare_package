@@ -37,8 +37,8 @@ static void __print_help(void)
     puts("   Ex. ./compare_package 2.6-1.5 2.6-2.1\n");
 }
 
-/* This static set el related strings to a number. */
-static char* __set_el_related_strings_to_number(char* token)
+/* This static convert el related strings to a number. */
+static char* __convert_el_related_strings_to_number(char* token)
 {
     if (
             (strcmp(token, "x86_64") == 0) ||
@@ -140,7 +140,7 @@ static void __set_token_to_arr(char* str_c, char arr[MAX_ARR_LENGTH][MAX_FILE_NA
 
     /* get the first token */
     token = strtok(comp_c, delim);
-    token = __set_el_related_strings_to_number(token);
+    token = __convert_el_related_strings_to_number(token);
     //printf("first_token:%s\n", token);
     strncpy(arr[i], token,
         MAX_FILE_NAME_LENGTH - 1);
@@ -151,7 +151,7 @@ static void __set_token_to_arr(char* str_c, char arr[MAX_ARR_LENGTH][MAX_FILE_NA
         token = strtok(NULL, delim);
         if (token == NULL)
             break;
-        token = __set_el_related_strings_to_number(token);
+        token = __convert_el_related_strings_to_number(token);
         strncpy(arr[i], token,
             MAX_FILE_NAME_LENGTH - 1);
         //printf("%s\n", token);

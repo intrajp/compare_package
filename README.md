@@ -33,5 +33,6 @@ Program Name: compare_package
 # There is no install script please use in the current directory. 
 
 # cleaning
+
  $ make clean-local
 ```
