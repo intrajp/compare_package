@@ -189,7 +189,7 @@ static int __compare_package_strings(char arr_a[MAX_ARR_LENGTH][MAX_FILE_NAME_LE
                 return 12;
         } else {
             //puts("hyphen");
-            const char delim_hyphen[2]= "-"; /* this is the delimiter period */
+            const char delim_hyphen[2]= "-"; /* this is the delimiter hyphen */
             char arr_a2[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH];
             char arr_b2[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH];
             __set_token_to_arr(arr_a[i], arr_a2, delim_hyphen);
@@ -226,6 +226,11 @@ int main(int argc, char* argv[])
                 MAX_FILE_NAME_LENGTH - 1);
         strncpy(comp_b, argv[2],
                 MAX_FILE_NAME_LENGTH - 1);
+        int comp_b_len = 0;
+	comp_b_len = strlen(comp_b);
+	char* comp_b_c = &(comp_b[comp_b_len - 1]);
+	if (strcmp(comp_b_c, "-") == 0)
+            comp_b[comp_b_len - 1] ='\0';
         char arr_a[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH];
         char arr_b[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH];
         int i = 0;

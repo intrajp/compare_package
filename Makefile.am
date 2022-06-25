@@ -27,5 +27,3 @@ clean-local:
 	rm -rf .libs
 	rm -rf autom4te.cache
 	rm -rf m4 
-
-

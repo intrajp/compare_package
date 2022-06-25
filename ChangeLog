@@ -2,3 +2,4 @@
 20220609 Add one function. 0.0.2
 20220609 Fix Makefila.am. 0.0.3
 20220611 Add README which is needed when build. 0.0.4
+20220625 Fix segfault problem when b has hyphen at the end. 0.0.5
