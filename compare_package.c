@@ -173,7 +173,8 @@ static int __compare_package_strings(char arr_a[MAX_ARR_LENGTH][MAX_FILE_NAME_LE
     while (i < MAX_ARR_LENGTH) {
         if ((strcmp(arr_a[i], "") == 0) && (strcmp(arr_b[i], "") == 0))
             break;
-        if ((strstr(arr_a[i], "-") == 0) && (strstr(arr_b[i], "-") == 0)) {
+        if ((strstr(arr_a[i], "-") == 0) && (strstr(arr_b[i], "-") == 0) &&
+        (strstr(arr_a[i], "+") == 0) && (strstr(arr_b[i], "+") == 0)) {
             num_a = strtoll(arr_a[i], &endptr, base);
             num_b = strtoll(arr_b[i], &endptr, base);
             //printf("arr_a[%d]:%s\n", i, arr_a[i]);
@@ -187,7 +188,7 @@ static int __compare_package_strings(char arr_a[MAX_ARR_LENGTH][MAX_FILE_NAME_LE
                 return 11;
             else if (num_a < num_b)
                 return 12;
-        } else {
+	} else if ((strstr(arr_a[i], "-") != 0) && (strstr(arr_b[i], "-") != 0)) {
             //puts("hyphen");
             const char delim_hyphen[2]= "-"; /* this is the delimiter hyphen */
             char arr_a2[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH];
@@ -195,11 +196,24 @@ static int __compare_package_strings(char arr_a[MAX_ARR_LENGTH][MAX_FILE_NAME_LE
             __set_token_to_arr(arr_a[i], arr_a2, delim_hyphen);
             __set_token_to_arr(arr_b[i], arr_b2, delim_hyphen);
             compared = __compare_package_strings(arr_a2, arr_b2);
-	    if (compared == 0) {
+            if (compared == 0) {
                 i++;
                 continue;
             }
-	    return compared;
+            return compared;
+        } else if ((strstr(arr_a[i], "+") != 0) && (strstr(arr_b[i], "+") != 0)) {
+            //puts("plus");
+            const char delim_hyphen[2]= "+"; /* this is the delimiter hyphen */
+            char arr_a2[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH];
+            char arr_b2[MAX_ARR_LENGTH][MAX_FILE_NAME_LENGTH];
+            __set_token_to_arr(arr_a[i], arr_a2, delim_hyphen);
+            __set_token_to_arr(arr_b[i], arr_b2, delim_hyphen);
+            compared = __compare_package_strings(arr_a2, arr_b2);
+            if (compared == 0) {
+                i++;
+                continue;
+            }
+            return compared;
         }
         i++;
     }
