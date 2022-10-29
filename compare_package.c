@@ -125,6 +125,26 @@ static char* __convert_el_related_strings_to_number(char* token)
         token = "8";
     if (strcmp(token, "el8_9") == 0)
         token = "9";
+    if (strcmp(token, "el9") == 0)
+        token = "0";
+    if (strcmp(token, "el9_1") == 0)
+        token = "1";
+    if (strcmp(token, "el9_2") == 0)
+        token = "2";
+    if (strcmp(token, "el9_3") == 0)
+        token = "3";
+    if (strcmp(token, "el9_4") == 0)
+        token = "4";
+    if (strcmp(token, "el9_5") == 0)
+        token = "5";
+    if (strcmp(token, "el9_6") == 0)
+        token = "6";
+    if (strcmp(token, "el9_7") == 0)
+        token = "7";
+    if (strcmp(token, "el9_8") == 0)
+        token = "8";
+    if (strcmp(token, "el9_9") == 0)
+        token = "9";
 
     return token;
 }

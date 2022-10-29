@@ -1,6 +1,6 @@
 # configure.ac - process this file with autoconf to produce configure
 #
-# Copyright (C) 2019 Shintaro Fujiwara 
+# Copyright (C) 2022 Shintaro Fujiwara 
 #
 # This library is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -28,8 +28,8 @@ version 2.1 of the License, or (at your option) any later version. See the
 configure.ac file for more details.])
 
 # initialize and set version and bugreport address
-AC_INIT([compare_package], [0.0.5], [shintaro.fujiwara@gmail.com])
-RELEASE_MONTH="Jun 2022"
+AC_INIT([compare_package], [0.0.7], [shintaro.fujiwara@gmail.com])
+RELEASE_MONTH="Nov 2022"
 AC_SUBST(RELEASE_MONTH)
 AC_CONFIG_MACRO_DIR([m4])
 
